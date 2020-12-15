@@ -339,7 +339,7 @@ MonoBehaviour:
   targetObjs:
   - {fileID: 204613875}
   - {fileID: 1980951150}
-  - {fileID: 2018991280}
+  - {fileID: 1996737525}
   targetClass: 3
   resetDeviceIds: 9
 --- !u!1 &705507993
@@ -735,11 +735,11 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1752578502}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2018991280 stripped
+--- !u!1 &1996737525 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5338369119199865244, guid: eec3024fb34ca2a43a89062fe34e0ffe,
     type: 3}
-  m_PrefabInstance: {fileID: 1530611574}
+  m_PrefabInstance: {fileID: 394163960}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5338369119267881327
 PrefabInstance:
