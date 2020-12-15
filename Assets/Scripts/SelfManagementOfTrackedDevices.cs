@@ -12,6 +12,8 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
     CVRSystem _vrSystem;
     List<int> _validDeviceIds = new List<int>();
 
+    //add
+
     void Start()
     {
         var error = EVRInitError.None;
@@ -61,10 +63,17 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
 //                Debug.Log("!!!!!!!!!!!"+_validDeviceIds[i].GetType());
 //                Debug.Log("!!!!!!!!!!!"+i.GetType());
                 var deviceClass = _vrSystem.GetTrackedDeviceClass((uint)_validDeviceIds[i]);
-//                if(deviceClass == ETrackedDeviceClass.Controller)
-//                {
-////                    Debug.Log("0000000000" + SteamVR_Actions._default.InterractUI);
-//                }
+
+
+
+                
+                if(deviceClass == ETrackedDeviceClass.Controller)
+                {
+                    var device = SteamVR_Controller.Input(_validDeviceIds[i]);
+                    Debug.Log("!!!!!!!!!!!"+device);
+                    Debug.Log("!!!!!!!!!!!"+_validDeviceIds[i]);
+//                    Debug.Log("0000000000" + SteamVR_Actions._default.InterractUI);
+                }
 
             }
         }

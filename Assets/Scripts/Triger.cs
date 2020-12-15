@@ -11,7 +11,6 @@ public class Triger : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
 
     // Update is called once per frame
