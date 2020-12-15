@@ -13,6 +13,12 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
     List<int> _validDeviceIds = new List<int>();
 
     //add
+    //controllerの情報
+    private SteamVR_Controller.Device ctrl0;
+    private SteamVR_Controller.Device ctrl1;
+    ///???
+    protected Vector2 TouchPadValue => ctrl0.GetAxis();
+    protected float TriggerValue => ctrl0.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).x;
 
     void Start()
     {
@@ -54,25 +60,29 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
         {
             if (i < targetObjs.Length)
             {
+                //ここから位置トラック
                 var pose = allPoses[_validDeviceIds[i]];
                 var absTracking = pose.mDeviceToAbsoluteTracking;
                 var mat = new SteamVR_Utils.RigidTransform(absTracking);
                 targetObjs[i].transform.SetPositionAndRotation(mat.pos, mat.rot);
 
                 //add
-//                Debug.Log("!!!!!!!!!!!"+_validDeviceIds[i].GetType());
-//                Debug.Log("!!!!!!!!!!!"+i.GetType());
+                //コントローラーのとき、ボタンの情報を取得
                 var deviceClass = _vrSystem.GetTrackedDeviceClass((uint)_validDeviceIds[i]);
-
-
-
-                
                 if(deviceClass == ETrackedDeviceClass.Controller)
                 {
-                    var device = SteamVR_Controller.Input(_validDeviceIds[i]);
-                    Debug.Log("!!!!!!!!!!!"+device);
-                    Debug.Log("!!!!!!!!!!!"+_validDeviceIds[i]);
-//                    Debug.Log("0000000000" + SteamVR_Actions._default.InterractUI);
+                    if(ctrl0 == null)
+                        ctrl0 = SteamVR_Controller.Input(_validDeviceIds[i]);
+                    else if(ctrl1 == null && _validDeviceIds[i]!= ctrl0.index)
+                        ctrl1 = SteamVR_Controller.Input(_validDeviceIds[i]);
+                    if(ctrl0 != null) {
+                        ControllerFunction(ctrl0);
+                        Debug.Log("ctrl0!!!!!!!!!!!"+ctrl0+ctrl0.index);
+                    }
+                    if(ctrl1 != null) {
+                        ControllerFunction(ctrl1);
+                        Debug.Log("ctrl1!!!!!!!!!!!"+ctrl1+ctrl1.index);
+                    }
                 }
 
             }
@@ -90,4 +100,154 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
             SetDeviceIds();
         }
     }
+
+   protected void Pulse(ushort pulse, SteamVR_Controller.Device device)
+   {
+       device.TriggerHapticPulse(pulse);
+   }
+
+   private void ControllerFunction(SteamVR_Controller.Device device)
+   {
+       if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+       {
+           TriggerTouchDown();
+           Debug.Log("トリガーを浅く引いた");
+       }
+       if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+       {
+           TriggerPressDown(device);
+           Debug.Log("トリガーを深く引いた");
+       }
+       if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+       {
+           TriggeTouchUp();
+           Debug.Log("トリガーを離した");
+       }
+       if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+       {
+           TouchpadPressDown();
+           Debug.Log("タッチパッドをクリックした");
+       }
+       if (device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+       {
+           TouchpadPress();
+           Debug.Log("タッチパッドをクリックしている");
+       }
+       if (device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
+       {
+           TouchpadPressUp();
+           Debug.Log("タッチパッドをクリックして離した");
+       }
+       if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
+       {
+           TouchpadTouchDown();
+           Debug.Log("タッチパッドに触った");
+       }
+       if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Touchpad))
+       {
+           TouchpadTouchUp();
+           Debug.Log("タッチパッドを離した");
+       }
+       if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+       {
+           ApplicationMenuPressDown();
+           Debug.Log("メニューボタンをクリックした");
+       }
+       if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+       {
+           GripPressDown();
+           Debug.Log("グリップボタンをクリックした");
+       }
+
+       if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+       {
+           TriggerTouch();
+           Debug.Log("トリガーを浅く引いている");
+       }
+       if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
+       {
+           TriggerPress();
+           Debug.Log("トリガーを深く引いている");
+       }
+       if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
+       {
+           TouchPadTouch();
+           Debug.Log("タッチパッドに触っている");
+       }
+   }
+
+
+   protected virtual void TouchPadTouch()
+   {
+       return;
+   }
+
+   protected virtual void TouchpadPressDown()
+   {
+       return;
+
+   }
+   protected virtual void TriggerPress()
+   {
+       return;
+   }
+
+
+   protected virtual void TriggerTouch()
+   {
+       return;
+   }
+
+   protected virtual void GripPressDown()
+   {
+       return;
+   }
+
+   protected virtual void ApplicationMenuPressDown()
+   {
+       return;
+   }
+
+
+   protected virtual void TouchpadTouchUp()
+   {
+       return;
+   }
+
+
+   protected virtual void TouchpadPressUp()
+   {
+       return;
+   }
+
+
+   protected virtual void TouchpadPress()
+   {
+       return;
+   }
+
+
+   protected virtual void TouchpadTouchDown()
+   {
+       return;
+   }
+
+
+   protected virtual void TriggeTouchUp()
+   {
+       return;
+   }
+
+
+   protected virtual void TriggerPressDown(SteamVR_Controller.Device device)
+   {
+        Pulse(3200, device);
+       return;
+   }
+
+
+   protected virtual void TriggerTouchDown()
+   {
+       return;
+   }
 }
