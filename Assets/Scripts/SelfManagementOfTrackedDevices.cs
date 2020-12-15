@@ -111,6 +111,7 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
        {
            TriggerTouchDown();
+            Pulse(2000,device);
            Debug.Log("トリガーを浅く引いた");
        }
        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
@@ -241,7 +242,7 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
 
    protected virtual void TriggerPressDown(SteamVR_Controller.Device device)
    {
-        Pulse(3200, device);
+//        Pulse(3200, device);
        return;
    }
 
