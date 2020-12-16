@@ -8,6 +8,7 @@ using System.IO;
 public class ActiveInfoCSV : MonoBehaviour
 {
     private string filePath = "/Resources/save.txt";
+    private string path;
 
     void Start()
     {
@@ -56,9 +57,15 @@ public class ActiveInfoCSV : MonoBehaviour
     }
 
 
+    void StartRec()
+    {
+        path = Application.dataPath + filePath;
+        Debug.Log("Start Recorad Data To " + path);
+
+    }
+
     bool saveCSV(string path, string[][] strList)
     {
-
         try
         {
             using (StreamWriter writer = new StreamWriter(path, true))
