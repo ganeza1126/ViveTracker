@@ -41,6 +41,7 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
         for (uint i = 0; i < OpenVR.k_unMaxTrackedDeviceCount; i++)
         {
             var deviceClass = _vrSystem.GetTrackedDeviceClass(i);
+            Debug.Log("!!!!!device class is " + deviceClass + i);
             if (deviceClass != ETrackedDeviceClass.Invalid && deviceClass == targetClass)
             {
                 Debug.Log("OpenVR device at " + i + ": " + deviceClass);

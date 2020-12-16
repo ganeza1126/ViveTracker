@@ -121,11 +121,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &204613875 stripped
+--- !u!1 &35078586 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5338369119199865244, guid: eec3024fb34ca2a43a89062fe34e0ffe,
     type: 3}
-  m_PrefabInstance: {fileID: 5338369119267881327}
+  m_PrefabInstance: {fileID: 1091635606}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &204613879 stripped
 Transform:
@@ -360,13 +360,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666220556}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8859f7df2d77d64d871ee0fec05f01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObjs:
   - {fileID: 502860724}
+  - {fileID: 35078586}
   targetClass: 2
   resetDeviceIds: 9
 --- !u!4 &666220558
@@ -390,13 +391,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666220556}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8859f7df2d77d64d871ee0fec05f01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObjs:
-  - {fileID: 204613875}
+  targetObjs: []
   targetClass: 3
   resetDeviceIds: 9
 --- !u!1 &705507993

@@ -40,7 +40,6 @@ public class MySaveCsv : MonoBehaviour
 
         //obj取得
         activeObj = this.gameObject;
-        Debug.Log("##############################" + activeObj);
         childCount = activeObj.transform.childCount;
         InvokeRepeating("InvokeUpdate", START_SECONDS, INTERVA_SECONDS);
 
@@ -48,10 +47,6 @@ public class MySaveCsv : MonoBehaviour
     private void Update()
     {
         countTime += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        }
 
 //        if (isRec)
 //        {
