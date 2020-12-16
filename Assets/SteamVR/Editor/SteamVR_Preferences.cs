@@ -16,7 +16,8 @@ public class SteamVR_Preferences
 	{
 		get
 		{
-			return EditorPrefs.GetBool("SteamVR_AutoEnableVR", true);
+			//return EditorPrefs.GetBool("SteamVR_AutoEnableVR", true);
+			return EditorPrefs.GetBool("SteamVR_AutoEnableVR", false);
 		}
 		set
 		{
