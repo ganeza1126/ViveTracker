@@ -7,7 +7,7 @@ using System.IO;
 
 public class MySaveCsv : MonoBehaviour
 {
-    [SerializeField] string name = "nanasi";
+    [SerializeField] string objectname = "nanasi";
     [SerializeField] bool isRight = true;
     [SerializeField] int position = 1;
     [SerializeField] int area = 4;
@@ -34,12 +34,13 @@ public class MySaveCsv : MonoBehaviour
     void Start()
     {
         //filepath指定
-        filePath =filePath +  $"{name}/" + (isRight ? "r" : "l")+ $"_{position}_{area}_{height}.csv";
+        filePath =filePath +  $"{objectname}/" + (isRight ? "r" : "l")+ $"_{position}_{area}_{height}.csv";
         Debug.Log("##############################" + filePath);
 
 
         //obj取得
         activeObj = this.gameObject;
+        Debug.Log("##############################" + activeObj);
         childCount = activeObj.transform.childCount;
         InvokeRepeating("InvokeUpdate", START_SECONDS, INTERVA_SECONDS);
 
@@ -47,6 +48,10 @@ public class MySaveCsv : MonoBehaviour
     private void Update()
     {
         countTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
 
 //        if (isRec)
 //        {
@@ -56,7 +61,7 @@ public class MySaveCsv : MonoBehaviour
 //                FinishRec();
 //            }
 //        }
-        if (!isRec && Input.GetKeyDown(KeyCode.S))
+        if (!isRec && Input.GetKeyDown(KeyCode.Return))
         {
             //録画開始
             isRec = true;

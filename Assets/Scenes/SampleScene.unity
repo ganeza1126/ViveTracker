@@ -360,7 +360,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666220556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8859f7df2d77d64d871ee0fec05f01d, type: 3}
   m_Name: 
@@ -390,15 +390,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666220556}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8859f7df2d77d64d871ee0fec05f01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObjs:
   - {fileID: 204613875}
-  - {fileID: 1980951150}
-  - {fileID: 1996737525}
   targetClass: 3
   resetDeviceIds: 9
 --- !u!1 &705507993
@@ -852,7 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c481bd2a515e8854e981940fd14f05ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: nanashi
+  objectname: nanasi
   isRight: 1
   position: 1
   area: 4
@@ -877,23 +875,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1980951150 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5338369119199865244, guid: eec3024fb34ca2a43a89062fe34e0ffe,
-    type: 3}
-  m_PrefabInstance: {fileID: 1752578502}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1980951154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5338369119199865240, guid: eec3024fb34ca2a43a89062fe34e0ffe,
     type: 3}
   m_PrefabInstance: {fileID: 1752578502}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1996737525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5338369119199865244, guid: eec3024fb34ca2a43a89062fe34e0ffe,
-    type: 3}
-  m_PrefabInstance: {fileID: 394163960}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1996737529 stripped
 Transform:
