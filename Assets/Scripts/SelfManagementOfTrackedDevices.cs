@@ -14,7 +14,7 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
 
     //add
     //controllerの情報
-    private SteamVR_Controller.Device ctrl0;
+    public SteamVR_Controller.Device ctrl0;
     ///???
     protected Vector2 TouchPadValue => ctrl0.GetAxis();
     protected float TriggerValue => ctrl0.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).x;
@@ -93,13 +93,15 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
             SetDeviceIds();
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && ctrl0!=null)
+        //終了と開始を振動で伝える
+        if ((Input.GetKeyDown(KeyCode.F)|| Input.GetKeyDown(KeyCode.S)) && ctrl0!=null)
         {
             Pulse(2000, ctrl0);
         }
     }
 
-   protected void Pulse(ushort pulse, SteamVR_Controller.Device device)
+//   protected void Pulse(ushort pulse, SteamVR_Controller.Device device)
+   public void Pulse(ushort pulse, SteamVR_Controller.Device device)
    {
        device.TriggerHapticPulse(pulse);
    }

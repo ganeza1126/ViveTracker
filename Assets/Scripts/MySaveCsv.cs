@@ -26,10 +26,16 @@ public class MySaveCsv : MonoBehaviour
     private int datanum = 7;
     private int childCount;
 
+
     // <summary>  起動時間(秒)　</summary>
     private const float START_SECONDS = 0.0f;
     /// <summary>  更新間隔時間(秒)　</summary>
     private const float INTERVA_SECONDS = 0.5f;
+
+    //controller関連
+//    public SelfManagementOfTrackedDevices self;
+//    private bool isTrigger = false;
+//    private SteamVR_Controller.Device d;
 
     void Start()
     {
@@ -48,27 +54,46 @@ public class MySaveCsv : MonoBehaviour
     {
         countTime += Time.deltaTime;
 
-//        if (isRec)
-//        {
-////            addline();
-//            if (Input.GetKeyDown(KeyCode.Return))
-//            {
-//                FinishRec();
-//            }
+        //        if (isRec)
+        //        {
+        ////            addline();
+        //            if (Input.GetKeyDown(KeyCode.Return))
+        //            {
+        //                FinishRec();
+        //            }
+        //        }
+//        if (self.ctrl0 == null) {
+//            isTrigger = self.ctrl0.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger);
 //        }
-        if (!isRec && Input.GetKeyDown(KeyCode.Return))
+
+//        if (!isRec && (Input.GetKeyDown(KeyCode.Return)|| isTrigger))
+        if (!isRec && Input.GetKeyDown(KeyCode.S))
         {
+            //開始したよってアピールする
+//            Debug.Log("aaaaaaaaaaaaaaaaaa" + self.ctrl0);
+//            self.Pulse(3200, self.ctrl0);
             //録画開始
             isRec = true;
             countTime = 0;
             StartRec();
         }
-        if (isRec && Input.GetKeyDown(KeyCode.F))
+        if (isRec && Input.GetKeyDown(KeyCode.F) )
         {
             isRec = false;
             FinishRec();
         }
 
+    }
+
+    private bool TriggerFunction(SteamVR_Controller.Device device)
+    {
+       if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+       {
+
+            return true;
+//           Debug.Log("トリガーを浅く引いた");
+       }
+        return false;
     }
 
     //一定時間ごとに動くupdate的な
@@ -115,7 +140,6 @@ public class MySaveCsv : MonoBehaviour
 
     void StartRec()
     {
-
         //保存先指定
         path = Application.dataPath + filePath;
         Debug.Log("Start Recorad Data To " + path);

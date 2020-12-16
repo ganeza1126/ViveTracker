@@ -1,5 +1,11 @@
-# データ規則
-## ファイル名について
+# HMDなしでvive trackerとvive controllerを使った計測
+
+## 始め方
+- s:start
+- f:finish
+
+## データ規則(assets/resource/result/.)
+### ファイル名について
  `{name}/{rl}_{position}_{area}_{height}.csv`
 - name:名前
 - rl: 右足左足どちらか
@@ -11,6 +17,7 @@
   5. かかと
 - area: 1辺の突起の個数（n→$4n*4n \; (mm^2)$）
 - height: 重ねたブロックの枚数 (n→3n+1.5 mm)
-## 中身について
+
+### 中身について
 - １つのファイルに1条件、複数試行入っている
 - 並び順は,x,y,z(position),x,y,z,w(rotation)
