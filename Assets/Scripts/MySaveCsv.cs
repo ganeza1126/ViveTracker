@@ -7,7 +7,15 @@ using System.IO;
 
 public class MySaveCsv : MonoBehaviour
 {
-    private string filePath = "/Resources/save.txt";
+    [SerializeField] string name = "nanasi";
+    [SerializeField] bool isRight = true;
+    [SerializeField] int position = 1;
+    [SerializeField] int area = 4;
+    [SerializeField] int height = 2;
+
+    private string filePath = "/Resources/result/";
+
+
     private string path;
     private StreamWriter sw;
 
@@ -18,29 +26,62 @@ public class MySaveCsv : MonoBehaviour
     private int datanum = 7;
     private int childCount;
 
+    // <summary>  起動時間(秒)　</summary>
+    private const float START_SECONDS = 0.0f;
+    /// <summary>  更新間隔時間(秒)　</summary>
+    private const float INTERVA_SECONDS = 0.5f;
+
     void Start()
     {
+        //filepath指定
+        filePath =filePath +  $"{name}/" + (isRight ? "r" : "l")+ $"_{position}_{area}_{height}.csv";
+        Debug.Log("##############################" + filePath);
+
+
         //obj取得
         activeObj = this.gameObject;
         childCount = activeObj.transform.childCount;
+        InvokeRepeating("InvokeUpdate", START_SECONDS, INTERVA_SECONDS);
 
     }
     private void Update()
     {
         countTime += Time.deltaTime;
 
-        if (isRec)
+//        if (isRec)
+//        {
+////            addline();
+//            if (Input.GetKeyDown(KeyCode.Return))
+//            {
+//                FinishRec();
+//            }
+//        }
+        if (!isRec && Input.GetKeyDown(KeyCode.S))
         {
-            addline();
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                FinishRec();
-            }
+            //録画開始
+            isRec = true;
+            countTime = 0;
+            StartRec();
+        }
+        if (isRec && Input.GetKeyDown(KeyCode.F))
+        {
+            isRec = false;
+            FinishRec();
         }
 
     }
 
-    void addline()
+    //一定時間ごとに動くupdate的な
+    private void InvokeUpdate()
+    {
+        Debug.Log("Now status isRec is " + isRec);
+        if (isRec)
+        {
+            addline();
+        }
+    }
+
+    private void addline()
     {
         string[] str = new string[childCount+1];
         str[0] = countTime.ToString();
@@ -49,7 +90,9 @@ public class MySaveCsv : MonoBehaviour
             GameObject childObj = activeObj.transform.GetChild(i).gameObject;
             str[i+1] = getInfo(childObj);
         }
-        sw.WriteLine(string.Join(",", str));
+        string tmp = string.Join(",", str);
+        sw.WriteLine(tmp);
+        Debug.Log("Now object data is " + tmp);
     }
 
     string getInfo(GameObject Obj)
@@ -72,9 +115,6 @@ public class MySaveCsv : MonoBehaviour
 
     void StartRec()
     {
-        //録画開始
-        isRec = true;
-        countTime = 0;
 
         //保存先指定
         path = Application.dataPath + filePath;
@@ -96,15 +136,17 @@ public class MySaveCsv : MonoBehaviour
                 title[datanum * i + k+1] = " ";
             }
         }
-        sw.WriteLine(string.Join(",",title));
-        Debug.Log("title nakami" + title);
+        string tmp = string.Join(",", title);
+        sw.WriteLine(tmp);
+
+        Debug.Log("title no nakami ha " + tmp);
     }
 
     void FinishRec()
     {
         sw.Flush();
         sw.Close();
-        isRec = false;
+        Debug.Log("Finish Recorad Data To " + path);
     }
 
 }
