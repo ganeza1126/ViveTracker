@@ -77,11 +77,11 @@ public class SelfManagementOfTrackedDevices : MonoBehaviour
                         ctrl1 = SteamVR_Controller.Input(_validDeviceIds[i]);
                     if(ctrl0 != null) {
                         ControllerFunction(ctrl0);
-                        Debug.Log("ctrl0!!!!!!!!!!!"+ctrl0+ctrl0.index);
+//                        Debug.Log("ctrl0!!!!!!!!!!!"+ctrl0+ctrl0.index);
                     }
                     if(ctrl1 != null) {
                         ControllerFunction(ctrl1);
-                        Debug.Log("ctrl1!!!!!!!!!!!"+ctrl1+ctrl1.index);
+//                        Debug.Log("ctrl1!!!!!!!!!!!"+ctrl1+ctrl1.index);
                     }
                 }
 
